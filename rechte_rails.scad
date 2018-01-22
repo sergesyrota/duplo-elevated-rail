@@ -6,6 +6,8 @@ nh=8; // number height
 findiam=10.2; // fitting inner diameter
 condiam=9.2; // connector outer diameter
 
+// How much to lift the section
+lift=18;
 
 
 module start(x,y,or){
@@ -154,8 +156,10 @@ module singlerail(x,y,z,a){
             translate(v=[0,15.5,0])
             cube(size=[2*32.40+4*15.85,1.5,7.35]);
             // horizontal beam
-            translate(v=[0,15.5-12.6+1.5,5.35])
+            #translate(v=[0,15.5-12.6+1.5,5.35])
             cube(size=[2*32.40+4*15.85,12.6,2]);
+            // Elevated horizontal beam
+            translate(v=[0,17,5.35]) lift_track(2*32.40+4*15.85,12.6,2,18);
             // triangular cross section wall
             translate(v=[0,2.5+16.0,7+8.85])
             scale(v=[1,2.5,9])
@@ -227,4 +231,27 @@ module railsection(x,y,a){
    }
 }
 
-railsection(0,0,-65);
+railsection(0,0,0);
+
+module lift_track(length, width, thick, zlift) {
+    epsilon=0.01;
+    radius = ((pow(length,2)/4)+pow(((zlift-thick)/2),2))/(2*((zlift-thick)/2));
+    $fn=radius*20;
+    //cube([length, width, thick]);
+    translate([0,0,0]) union() {
+        translate([0,0,radius]) rotate([90,0,0]) intersection() {
+            difference() {
+                cylinder(r=radius, h=width);
+                translate([0,0,-epsilon]) cylinder(r=radius-thick, h=width+2*epsilon);
+            }
+            translate([0,-radius,0]) cube([length, zlift/2, width]);
+        }
+        translate([length-thick/2,0,-radius+zlift]) rotate([90,0,0]) intersection() {
+            difference() {
+                cylinder(r=radius, h=width);
+                translate([0,0,-epsilon]) cylinder(r=radius-thick, h=width+2*epsilon);
+            }
+            translate([-length,radius-(zlift/2),0]) cube([length, zlift/2, width]);
+        }
+    }
+}
