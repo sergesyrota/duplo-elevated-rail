@@ -42,13 +42,13 @@ module start(x,y,or){
 			          // rings
 			          for (i=[0:3]){
 				          translate(v=[8.45-1.25/2,15.85/2+i*16,0])
-				          cylinder(h=6,r=findiam/2+1.25,center=True);
+				          cylinder(h=6,r=findiam/2+1.25,center=true);
 			          }
 			         }
 			        union(){
 			          for (i=[0:3]){
 				          translate(v=[8.45-1.25/2,15.85/2+i*16,-1])
-				          cylinder(h=11,r=findiam/2,center=True);
+				          cylinder(h=11,r=findiam/2,center=true);
 			          }
 			        }
 			
@@ -56,22 +56,22 @@ module start(x,y,or){
 			
 			      // central plateau
 			      translate(v=[0,(63.65-28)/2,6.5])
-			      cube(size=[15.85,28,3.6],center=False);
+			      cube(size=[15.85,28,3.6],center=false);
 	
 	              // straigth vertical walls of rail section connector hole
 	              translate(v=[0,15.85/2+2*16-5.5,])
-	        	   cube(size=[8.45,11,10.1],center=False);	
+	        	   cube(size=[8.45,11,10.1],center=false);	
 	
 		           // rail section connector
 		         	union(){
 			          translate(v=[-8.45+1.25/2,15.85/2+16,8.1])
-					   cylinder(h=2,r=condiam/2,center=True);
+					   cylinder(h=2,r=condiam/2,center=true);
 			          translate(v=[-8.45+1.25/2,15.85/2+16,5.1])
-					   cylinder(h=3,r1=2.5, r2=condiam/2,center=True);      
+					   cylinder(h=3,r1=2.5, r2=condiam/2,center=true);      
 			          translate(v=[-8.45+1.25/2,15.85/2+16,0])
-					   cylinder(h=6,r=2.5,center=True);
+					   cylinder(h=6,r=2.5,center=true);
 			          translate(v=[-8.45+1.25/2,15.85/2+16-3,6.1])
-				       cube(size=[8.45,6,4],center=True);
+				       cube(size=[8.45,6,4],center=true);
 	                  supportbeam(0,15.85/2+16-3,3.1,90,6,3);
 		           }
 	          }
@@ -79,9 +79,9 @@ module start(x,y,or){
 	           // rail section connector hole
 	         	union(){
 		          translate(v=[8.45-1.25/2,15.85/2+2*16,-1])
-				   cylinder(h=22,r=findiam/2,center=True);
+				   cylinder(h=22,r=findiam/2,center=true);
 	              translate(v=[-0.1,15.85/2+2*16-4,-1])
-				   cube(size=[8.45,8,22],center=True);	      
+				   cube(size=[8.45,8,22],center=true);	      
 	           }
 	       }
 	   }
@@ -121,16 +121,16 @@ module center(x,y,or){
 		          // rings
 		          for (i=[0:3]){
 			          translate(v=[8.45-1.25/2,15.85/2+i*16,0])
-			          cylinder(h=6,r=findiam/2+1.25,center=True);
+			          cylinder(h=6,r=findiam/2+1.25,center=true);
 			          translate(v=[8.45-1.25/2+15.85,15.85/2+i*16,0])
-			          cylinder(h=6,r=findiam/2+1.25,center=True);		          }
+			          cylinder(h=6,r=findiam/2+1.25,center=true);		          }
 		         }
 		        union(){
 		          for (i=[0:3]){
 			          translate(v=[8.45-1.25/2,15.85/2+i*16,-1])
-			          cylinder(h=11,r=findiam/2,center=True);
+			          cylinder(h=11,r=findiam/2,center=true);
 			          translate(v=[8.45-1.25/2+15.85,15.85/2+i*16,-1])
-			          cylinder(h=11,r=findiam/2,center=True);
+			          cylinder(h=11,r=findiam/2,center=true);
 		          }
 		        }
 		
@@ -138,7 +138,7 @@ module center(x,y,or){
 		
 		      // central plateau
 		      translate(v=[0,(63.65-28)/2,6.5])
-		      cube(size=[2*15.85,28,3.6],center=False);
+		      cube(size=[2*15.85,28,3.6],center=false);
 
           }
        
@@ -172,13 +172,13 @@ module singlerail(x,y,z,a){
 		          for (i=[1,2,5,6]){
 	
 			          translate(v=[8+i*16.0,15.85/2,0])
-			          cylinder(h=6,r=findiam/2+1.25,center=True);		          
+			          cylinder(h=6,r=findiam/2+1.25,center=true);		          
 		         }
                }
 		        union(){
 		          for (i=[1,2,5,6]){
 			          translate(v=[8+i*16.0,15.85/2,-1])
-			          cylinder(h=20,r=findiam/2,center=True);
+			          cylinder(h=20,r=findiam/2,center=true);
 		          }
                 }
                 translate(v=[-1,-1,-1])

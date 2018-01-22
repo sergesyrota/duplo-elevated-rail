@@ -121,7 +121,7 @@ module flattop4pyramid(x,y,z,a,lx,ly,h1,h2){
 			              [1,0,3],[2,1,3] ] // two triangles for square base
 			 );
             translate(v=[-1,-1,h2]){
-               cube(size=[lx+2,ly+2,h1],center=False);
+               cube(size=[lx+2,ly+2,h1],center=false);
             }
          }
       }
