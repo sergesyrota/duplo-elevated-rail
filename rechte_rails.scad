@@ -7,7 +7,9 @@ findiam=10.2; // fitting inner diameter
 condiam=9.2; // connector outer diameter
 
 // How much to lift the section
-lift=18;
+lift=0;
+// Brims for first layer to stick well, set to 0 to remove
+brim_height=0.2;
 
 
 module start(x,y,or,zlift=0){
@@ -72,6 +74,8 @@ module start(x,y,or,zlift=0){
 					   cylinder(h=3,r1=2.5, r2=condiam/2,center=false);      
 			          translate(v=[-8.45+1.25/2,15.85/2+16,0])
 					   cylinder(h=6+zlift,r=2.5,center=false);
+                      // connection to the base profile for easy printing
+                      translate([-8.45+1.25/2,15.85/2+16-2.5,0]) cube([9,5,brim_height]);
 			          translate(v=[-8.45+1.25/2,15.85/2+16-3,6.1+zlift])
 				       cube(size=[8.45,6,4],center=false);
 	                  supportbeam(0,15.85/2+16-3,3.1+zlift,90,6,3);
@@ -187,7 +191,9 @@ module singlerail(x,y,z,a, zlift=0){
 		          for (i=[1,2,5,6]){
 	
 			          translate(v=[8+i*16.0,15.85/2,0])
-			          cylinder(h=6,r=findiam/2+1.25,center=false);		          
+			          cylinder(h=6,r=findiam/2+1.25,center=false);
+                      // First layer brim to improve stickyness
+                      translate(v=[i*16.0-1,4,0]) cube([18,4,brim_height]);
 		         }
                }
 		        union(){
@@ -235,7 +241,7 @@ module railsection(x,y,a,zlift=0){
    }
 }
 
-railsection(0,0,0,zlift=18);
+railsection(0,0,0,zlift=lift);
 
 module lift_track(length, width, thick, zlift) {
     epsilon=0.01;
