@@ -59,7 +59,7 @@ module start(x,y,or,zlift=0){
 			      }
 			
 			      // central plateau
-			      translate(v=[0,(63.65-28)/2,6.5])
+			      translate(v=[0,(63.65-28)/2,6.5+zlift])
 			      cube(size=[15.85,28,3.6],center=false);
 	
 	              // straigth vertical walls of rail section connector hole
@@ -84,10 +84,10 @@ module start(x,y,or,zlift=0){
 	       
 	           // rail section connector hole
 	         	union(){
-		          translate(v=[8.45-1.25/2,15.85/2+2*16,-1+zlift])
-				   cylinder(h=22,r=findiam/2,center=false);
-	              translate(v=[-0.1,15.85/2+2*16-4,-1+zlift])
-				   cube(size=[8.45,8,22],center=false);	      
+		          translate(v=[8.45-1.25/2,15.85/2+2*16,-1])
+				   cylinder(h=22+zlift,r=findiam/2,center=false);
+	              translate(v=[-0.1,15.85/2+2*16-4,-1])
+				   cube(size=[8.45,8,22+zlift],center=false);	      
 	           }
 	       }
 	   }
@@ -110,7 +110,8 @@ module center(x,y,or){
 		      }
 		
 		      // ridge supporting roof
-		      rectsupportingridge(1.5,1.5,5-1,0,2*15.85-3,60.65,1);
+		      //rectsupportingridge(1.5,1.5,5-1,0,2*15.85-3,60.65,1);
+              //translate([0,0,5-1+0.5]) cube(size=[2*15.85,63.65, 0.5]);
 		
 		      // internal support structure
 		      difference(){
@@ -127,9 +128,9 @@ module center(x,y,or){
 		          // rings
 		          for (i=[0:3]){
 			          translate(v=[8.45-1.25/2,15.85/2+i*16,0])
-			          cylinder(h=6,r=findiam/2+1.25,center=false);
+			          cylinder(h=6-1.3,r=findiam/2+1.25,center=false);
 			          translate(v=[8.45-1.25/2+15.85,15.85/2+i*16,0])
-			          cylinder(h=6,r=findiam/2+1.25,center=false);		          }
+			          cylinder(h=6-1.3,r=findiam/2+1.25,center=false);		          }
 		         }
 		        union(){
 		          for (i=[0:3]){
